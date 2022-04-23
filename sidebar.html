@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Sidebar</title>
+
+	<script src="https://kit.fontawesome.com/3e3301e92f.js" crossorigin="anonymous"></script>
+
+	<!-- my style -->
+	<style type="text/css">
+		
+
+		body {
+			font-family: 'roboto', sans-serif;
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			text-decoration: none;
+		}
+
+		/*style sidebar*/
+
+		.sidebar {
+
+			position: fixed;
+			left: -250px;
+			width: 250px;
+			height: 100%;
+			background-color: #051367;
+			transition: all .5s ease;
+
+		}
+
+		.sidebar header {
+			font-size: 22px;
+			color: whitesmoke;
+			text-align: center;
+			line-height: 70px;
+			background-color: #2D31FA;
+			user-select: none;
+		}
+
+		.sidebar ul a {
+			display: block;
+			width: 100%;
+			height: 100%;
+			line-height: 65px;
+			font-size: 20px;
+			color: white;
+			padding-left: 40px;
+			box-sizing: border-box;
+			border-top: 1px solid rgb(255, 255, 255, .1);
+			border-bottom: solid 1px black;
+			transition: .4s;
+		}
+
+		.sidebar ul li:hover a {
+
+			padding-left:50px ;
+		}
+
+		.sidebar ul a i {
+			margin-right : 16px;
+		}
+		/*akhir style sidebar*/
+
+
+		/*style toggle*/
+
+		#check {
+			display: none;
+		}
+
+		label #btn , label #cencel {
+			position: absolute;
+			cursor: pointer;
+			background-color: #5D8BF4;
+			border-radius: 3px;
+		}
+
+		label #btn {
+			left: 40px;
+			top: 25px;
+			font-size: 35px;
+			color: white;
+			padding: 6px 12px;
+			transition: all .5s;
+		}
+
+		label #cencel {
+			z-index: 1111;
+			left: -195px;
+			top: 17px;
+			font-size: 30px;
+			color: white;
+			padding: 4px 9px;
+			transition: all .5s ease;
+		}
+
+		#check:checked ~ .sidebar {
+			left: 0;
+		}
+
+		#check:checked ~ label #btn {
+			left: 250px;
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		#check:checked ~ label #cencel {
+			left: 195px;
+			opacity: 50%;
+		}
+
+
+		/*akhir toggle*/
+
+
+		 /*bagian sections */
+
+		section {
+	
+			background-image: url(https://cdn.pixabay.com/photo/2018/01/14/23/12/nature-3082832__480.jpg) ;
+			background-position: center;
+			background-size: cover;
+			height: 100vh;
+		}
+
+		/*akhir section*/
+	</style>
+
+	<!-- end style -->
+</head>
+<body>
+
+<!-- bikin toggle -->
+<input type="checkbox" id="check">
+<label for="check">
+	<i class="fas fa-bars" id="btn"></i>
+	<i class="fas fa-times" id="cencel"></i>
+</label>
+
+
+<!-- akhir toggle -->
+
+
+
+
+
+
+
+<div class="sidebar">
+	<header>My Website</header>
+	<ul>
+		<li>
+			<a href="#"><i class="fa-solid fa-qrcode"></i> Dasboard</a>
+		</li>
+		<li>
+			<a href="#"><i class="fa-solid fa-link"></i> Shortcuts</a>
+		</li>
+		<li>
+			<a href="#"><i class="fa-solid fa-stream"></i>Overview </a>
+		</li>
+		<li>
+			<a href="#"><i class="fa-solid fa-calendar-week"></i> Events</a>
+		</li>
+		<li>
+			<a href="#"><i class="fa-solid fa-question-circle"></i> Abouts</a>
+		</li>
+		<li>
+			<a href="#"><i class="fa-solid fa-sliders-h"></i>Services </a>
+		</li>
+		<li>
+			<a href="#"><i class="fa-solid fa-envelope"></i> Contact</a>
+		</li>
+		
+
+	</ul>
+	
+</div>		
+
+<section>
+	
+
+</section>
+
+</body>
+</html>
