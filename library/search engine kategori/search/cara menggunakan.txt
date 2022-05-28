@@ -1,0 +1,6 @@
+cara menggunkan
+extrak folder saerch
+lalu masukan di C:\xampp\htdocs\
+buat database baru dengan nama search localhost/phpmyadmin/
+upload database search.sql ke database yg suda di buat tadi
+kemudian buka localhost/search/
