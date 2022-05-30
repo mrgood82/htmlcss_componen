@@ -1,0 +1,230 @@
+<html>
+    <head>
+        <style>
+            body { 
+                background-color: #ddd; 
+            }
+            #content { 
+                margin: 150px auto; 
+                max-width: 760px; 
+                text-align: center; 
+            }
+            #carousel_container {
+                width: 95%;
+                height: 300px;
+                margin: 0 auto;
+                position: relative;
+                overflow: hidden;
+            
+            }
+            #carousel {
+                width: 600px;
+                height: 300px;
+                margin: 0;
+                padding: 0;
+                position: absolute;
+                list-style-type: none;
+            }
+            #carousel li {
+                position: absolute;
+                margin: 0;
+                padding: 0;
+                float: left;
+            }
+            #carousel li img {
+                width: 100%;
+                height: 100%;
+                box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+            }
+            
+            #c1 {
+                width: 200px;
+                height: 150px;
+                left: 200px;
+                top: 130px;
+                z-index: 5;
+            }
+            #c2 {
+                width: 150px;
+                height: 113px;
+                left: 350px;
+                top: 100px;
+                z-index: 4;
+            }
+            #c3 {
+                width: 100px;
+                height: 75px;
+                left: 450px;
+                top: 50px;
+                z-index: 3;
+            }
+            #c4 {
+                width: 80px;
+                height: 60px;
+                left: 400px;
+                top: 20px;
+                z-index: 2;
+            }
+            #c5 {
+                width: 70px;
+                height: 53px;
+                left: 320px;
+                top: 10px;
+                opacity: 0.5;
+                filter: alpha(opacity=50);
+                z-index: 1;
+            }
+            #c6 {
+                width: 70px;
+                height: 53px;
+                left: 210px;
+                top: 10px;
+                opacity: 0.5;
+                filter: alpha(opacity=50);
+                z-index: 1;
+            }
+            #c7 {
+                width: 80px;
+                height: 60px;
+                left: 120px;
+                top: 20px;
+                z-index: 2;
+            }
+            #c8 {
+                width: 100px;
+                height: 75px;
+                left: 50px;
+                top: 50px;
+                z-index: 3;
+            }
+            #c9 {
+                width: 150px;
+                height: 113px;
+                left: 100px;
+                top: 100px;
+                z-index: 4;
+            }
+            
+            #move_mark {
+                width: 95%;
+                max-width: 500px;
+                margin: 0 auto;
+                position: relative;
+                bottom: 0;
+            }
+            #move_mark a {
+                color: #666;
+                font-size: 20px;
+                font-weight: bold;
+                text-decoration: none;
+            }
+            #move_mark a.active, #move_mark a:hover {
+                color: #333;
+            }
+            #move_back {
+                margin: 0 10px;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+            }
+            #move_next {
+                margin: 0 10px;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="content">
+            <div id="carousel_container">
+                <ul id="carousel">
+                    <li id="c1"><a href="#"><img src="image/1.jpg"></a></li>
+                    <li id="c2"><a href="#"><img src="image/2.jpg"></a></li>
+                    <li id="c3"><a href="#"><img src="image/3.jpg"></a></li>
+                    <li id="c4"><a href="#"><img src="image/4.jpg"></a></li>
+                    <li id="c5"><a href="#"><img src="image/5.jpg"></a></li>
+                    <li id="c6"><a href="#"><img src="image/6.jpg"></a></li>
+                    <li id="c7"><a href="#"><img src="image/7.jpg"></a></li>
+                    <li id="c8"><a href="#"><img src="image/8.jpg"></a></li>
+                    <li id="c9"><a href="#"><img src="image/1.jpg"></a></li>
+                </ul>
+            </div>
+            <div id="move_mark">
+                <a class="move" href="#">●</a>
+                <a class="move" href="#">●</a>
+                <a class="move" href="#">●</a>
+                <a class="move" href="#">●</a>
+                <a class="move" href="#">●</a>
+                <a class="move" href="#">●</a>
+                <a class="move" href="#">●</a>
+                <a class="move" href="#">●</a>
+                <a class="move" href="#">●</a>
+                <div id="move_back"><a href="#">back</a></div>
+                <div id="move_next"><a href="#">next</a></div>
+            </div>
+        </div>
+    </body>
+</html>
+
+<script src="jquery.js"></script>
+<script src="jquery.acarousel.min.js"></script>
+<script>
+    $(function(){
+        var acarousel = $("#carousel").acarousel();
+        changeActive();
+
+        $("#carousel li a").click(function () {
+            if (acarousel.isAnim()) return false;
+
+            var move = acarousel.moveByElem($(this).parent());
+            if (move == 0) {
+                alert("Move 0");
+            } else {
+                changeActive(move);
+            }
+            return false;
+        });
+
+        $("#move_back").click(function () {
+            if (acarousel.isAnim()) return false;
+
+            var move = acarousel.move(1);
+            changeActive(move);
+            return false;
+        });
+
+        $("#move_next").click(function () {
+            if (acarousel.isAnim()) return false;
+
+            var move = acarousel.move(-1);
+            changeActive(move);
+            return false;
+        });
+
+        $(".move").click(function () {
+            if (acarousel.isAnim()) return false;
+
+            var index = $(".move").index(this);
+            var move = acarousel.moveByIndex(index);
+            changeActive(move);
+            return false;
+        });
+
+        function changeActive(move) {
+            var index = acarousel.getPos(move).index;
+            $(".move").removeClass("active").eq(index).addClass("active");
+        }
+
+        $(window).resize(function () {
+            var parent = $("#carousel_container");
+            var self = $("#carousel");
+            self.css({
+                left: parent.width() / 2 - self.width() / 2
+                , top: parent.height() / 2 - self.height() / 2
+            });
+        }).trigger("resize");
+
+
+    });
+</script>
